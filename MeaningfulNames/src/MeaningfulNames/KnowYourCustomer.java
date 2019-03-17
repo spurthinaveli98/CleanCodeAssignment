@@ -27,36 +27,56 @@ public class KnowYourCustomer {
         }
 
         catch (Exception e) {
-            log.warning("Please enter date in 'dd-mm-yyyy' format");
+            log.warning("Exception caught, Make sure entered date is in 'dd-mm-yyyy' format");
         }
 
     }
 
+
+    /*
+     *It gets input from the user.
+     * Input information like signup date, current date.
+     */
     private static void getCustomerDetails() {
-        log.info("Enter signup date and current date respectively");
+        log.info("Enter signup date and current date respectively in 'dd-mm-yyyy' format");
         signupDate = sc.next();
         currentDate = sc.next();
     }
 
+    /*
+     *It holds sequence of operations that are performed to calculate date Range.
+     */
     public static void calculateDateRange() {
         changeToDateTimeFormat();
         findAllowableDateRange();
     }
 
+    /*
+     *It changes input information into datetime format.
+     */
     public static void changeToDateTimeFormat() {
         signupLocalDate = LocalDate.parse(signupDate, formatter);
         currentLocalDate = LocalDate.parse(currentDate, formatter);
     }
 
+    /*
+     *It calculates anniversary date based on signup date.
+     */
     public static void calculateAnniversaryDate(int year) {
         anniversaryDate = LocalDate.of(year, signupLocalDate.getMonth(), signupLocalDate.getDayOfMonth());
     }
 
+    /*
+     *calculates startRange and endRange based on anniversary date.
+     */
     public static void calculateStartAndEndRange() {
         startRange = anniversaryDate.minusDays(30);
         endRange = anniversaryDate.plusDays(30);
     }
 
+    /*
+     *finds if start and end Ranges is allowable date Range.
+     */
     public static void findAllowableDateRange() {
         calculateAnniversaryDate(currentLocalDate.getYear());
         calculateStartAndEndRange();
@@ -99,15 +119,24 @@ public class KnowYourCustomer {
         allowableDateRange = startRange.format(formatter) + " " + endRange.format(formatter);
     }
 
+    /*
+     *prints allowable date range for Form date.
+     */
     private static void printAllowableDateRange(){
        log.info(allowableDateRange);
     }
 
+    /*
+     *It gets the input from TestCase.java
+     */
     public void setCustomerDetails(String testSignupDate, String testCurrentDate) {
         signupDate = testSignupDate;
         currentDate = testCurrentDate;
     }
 
+    /*
+     *It returns allowable date Range to TestCase.java
+     */
     public String getAllowableDateRange() {
         return allowableDateRange;
     }
