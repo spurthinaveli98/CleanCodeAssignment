@@ -29,14 +29,14 @@ public class MatrixModification {
     }
 
     /*
-     *Function "getMatrix" returns modified matrix to TestCase.java
+     *It returns modified matrix to TestCase.java
      */
     public int[][] getMatrix() {
         return Matrix;
     }
 
     /*
-     *Function "setMatrix" gets the input from TestCase.java
+     *It gets the input from TestCase.java
      */
     public void setMatrix(int[][] Matrix) {
         numOfRows=Matrix.length;
@@ -45,14 +45,14 @@ public class MatrixModification {
     }
 
     /*
-     *Function "getInputMatrix" gets input from the user.
+     *It gets input from the user.
      * Input information like number of rows, number of columns and elements of the matrix.
      */
     public static void getInputMatrix() throws InvalidInputSizeException {
         log.info("Enter number of rows and columns respectively for the input Matrix");
         numOfRows = sc.nextInt();
         numOfColumns = sc.nextInt();
-        IsValidInput(numOfRows,numOfColumns);
+        IsValidInput();
         Matrix = new int[numOfRows][numOfColumns];
         log.info("Enter Elements into Matrix row wise");
         for (row = 0; row < numOfRows; row++) {
@@ -63,20 +63,17 @@ public class MatrixModification {
     }
 
     /*
-     *Function "IsValidInput" checks if the input size is greater than zero or not.
-     * @param numOfRows
-     * It holds number of rows in matrix.
-     * @param numOfColumns
-     * It holds number of columns in matrix.
+     *It checks if the input size is less than zero.
+     *If true then throws an InvalidInputSizeException.
      */
-    public static void IsValidInput(int numOfRows,int numOfColumns)throws InvalidInputSizeException{
+    public static void IsValidInput()throws InvalidInputSizeException{
          if(numOfRows <= 0 || numOfColumns <= 0){
             throw new InvalidInputSizeException();
         }
     }
 
     /*
-     *Function "modifyMatrix" holds sequence of operations that are performed to modify Matrix.
+     *It holds sequence of operations that are performed to modify Matrix.
      */
     public static void modifyMatrix(){
         setRowFlag();
@@ -90,7 +87,7 @@ public class MatrixModification {
     }
 
     /*
-     *Function "setRowFlag" is set to one if any of the first row element is zero.
+     *Function "setRowFlag" is used to set rowFlag to one if any of the first row elements is zero.
      */
     static void setRowFlag(){
         for(column =0;column < numOfColumns;column++){
@@ -102,7 +99,7 @@ public class MatrixModification {
     }
 
     /*
-     *Function "setColumnFlag" is set to one if any of the first column element is zero.
+     *Function "setColumnFlag" is used to set columnFlag to one if any of the first column elements is zero.
      */
     static void setColumnFlag(){
         for(row =0;row < numOfRows;row++){
@@ -142,7 +139,7 @@ public class MatrixModification {
     }
 
     /*
-     *Function "setRowElementsToZero" sets all row elements that contains at least one element as zero to zeros.
+     *Function "setRowElementsToZero" set all row elements that contains at least one element as zero to zeros.
      */
     static void setRowElementsToZero() {
         for (row = 1; row < numOfRows; row++) {
@@ -155,7 +152,7 @@ public class MatrixModification {
     }
 
     /*
-     *Function "setColumnElementsToZero" sets all column elements that contains at least one element as zero to zeros.
+     *Function "setColumnElementsToZero" set all column elements that contains at least one element as zero to zeros.
      */
     static void setColumnElementsToZero() {
         for (column = 1; column < numOfColumns; column++) {
@@ -168,7 +165,7 @@ public class MatrixModification {
     }
 
     /*
-     *Function "modifyFirstRowElements" sets first row elements to zero if rowFlag is 1.
+     *Function "modifyFirstRowElements" set first row elements to zero if rowFlag is 1.
      */
     static void modifyFirstRowElements(){
         if(rowFlag == 1){
@@ -179,7 +176,7 @@ public class MatrixModification {
     }
 
     /*
-     *Function "modifyFirstColumnElements" sets first column elements to zero if columnFlag is 1.
+     *Function "modifyFirstColumnElements" set first column elements to zero if columnFlag is 1.
      */
     static void modifyFirstColumnElements(){
         if(columnFlag == 1){
