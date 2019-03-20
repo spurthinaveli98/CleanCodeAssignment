@@ -5,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+/*
+KnowYourCustomer is used to find the allowable date range for the form date.
+ */
 public class KnowYourCustomer {
 
     private static final Logger log = Logger.getLogger(KnowYourCustomer.class.getName());
@@ -27,7 +30,7 @@ public class KnowYourCustomer {
         }
 
         catch (Exception e) {
-            log.warning("Exception caught, Make sure entered date is in 'dd-mm-yyyy' format");
+            log.warning(e+" " + "Make sure entered date is in 'dd-mm-yyyy' format");
         }
 
     }
